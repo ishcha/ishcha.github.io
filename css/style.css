@@ -1,20 +1,348 @@
 html {
-    background-color: #fefefe;
+    background-color: #ffffff;
+}
+
+body {
+    font-family: Palatino, "EB Garamond", Georgia, "Times New Roman", serif;
+    color: #333;
+    line-height: 1.7;
 }
 
 body p, li {
     color: #454545;
-    font-size: 20px;
+    font-size: 18px;
 }
 
-body {
-    font-family: Palatino, "EB Garamond", Georgia, "Times New Roman", serif
+h1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 1.25rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #222;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.container {
+    max-width: 900px;
 }
 
 .row:not(#publications) a {
+    color: #0066cc;
     text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.row:not(#publications) a:hover {
+    color: #0052a3;
 }
 
 .image-link {
+    text-decoration: none !important;
+}
+
+ul {
+    padding-left: 1.5rem;
+}
+
+ul li {
+    margin-bottom: 0.75rem;
+}
+
+.abstract {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-left: 3px solid #0066cc;
+    border-radius: 4px;
+}
+
+.abstract pre {
+    background-color: #f1f3f4;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    padding: 16px;
+    font-family: 'Courier New', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 13px;
+    line-height: 1.4;
+    overflow-x: auto;
+    margin: 0;
+    white-space: pre;
+    color: #24292f;
+}
+
+/* Work Experience Styles */
+.work-experience-container {
+    margin: 2rem 0;
+}
+
+.work-experience-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    border: 1px solid #e9ecef;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.work-experience-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.work-logo {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+.work-logo img {
+    height: 45px;
+    max-width: 120px;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+.work-logo a:hover img {
+    transform: scale(1.1);
+}
+
+.work-info h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 10px 0 8px 0;
+    color: #333;
+}
+
+.work-info p {
+    font-size: 0.95rem;
+    color: #666;
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+.work-info small {
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 500;
+}
+
+/* Responsive Work Experience */
+@media screen and (max-width: 768px) {
+    .work-experience-card {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+    }
+    
+    .work-logo {
+        height: 50px;
+        margin-bottom: 12px;
+    }
+    
+    .work-logo img {
+        height: 35px;
+        max-width: 100px;
+    }
+    
+    .work-info h4 {
+        font-size: 1rem;
+    }
+    
+    .work-info p {
+        font-size: 0.9rem;
+    }
+    
+    .work-info small {
+        font-size: 0.8rem;
+    }
+}
+
+.btn-link {
+    color: #0066cc;
+    padding: 0;
+    font-size: 16px;
+}
+
+.btn-link:hover {
+    color: #0052a3;
+    text-decoration: underline;
+}
+
+.btn-link:focus {
+    box-shadow: none;
+}
+
+hr {
+    margin: 3rem 0;
+    border: 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 2px solid #e0e0e0;
+}
+
+.conference {
+    color: #800000 !important;
+}
+
+/* Table of Contents Sidebar */
+.toc-sidebar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(248, 249, 250, 0.95);
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 30px 25px;
+    max-width: 360px;
+    min-width: 340px;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+}
+
+.toc-profile {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.toc-profile-pic {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.toc-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+    line-height: 1.2;
+}
+
+.toc-contact {
+    text-align: center;
+}
+
+.toc-email, .toc-institution {
+    font-size: 1.05rem;
+    color: #555;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.toc-email i, .toc-institution i {
+    color: #0066cc;
+    margin-right: 8px;
+    width: 18px;
+    font-size: 1.1rem;
+}
+
+.toc-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 8px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0 0;
+}
+
+.toc-item {
+    margin: 14px 0;
+}
+
+.toc-link {
+    display: block;
+    padding: 12px 0;
+    color: #555;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+    padding-left: 15px;
+    cursor: pointer;
+    border-radius: 0 6px 6px 0;
+}
+
+.toc-link:hover {
+    color: #0066cc;
+    text-decoration: none;
+    border-left-color: #0066cc;
+    padding-left: 22px;
+    background-color: rgba(0, 102, 204, 0.12);
+    transform: translateX(3px);
+}
+
+.toc-link.active {
+    color: #800000;
+    font-weight: 700;
+    border-left-color: #800000;
+    padding-left: 22px;
+    background-color: rgba(128, 0, 0, 0.12);
+    transform: translateX(3px);
+}
+
+/* Adjust content margin for sidebar */
+@media (min-width: 1300px) {
+    .container {
+        margin-left: 400px;
+    }
+}
+
+/* Hide TOC on small screens */
+@media (max-width: 1299px) {
+    .toc-sidebar {
+        display: none;
+    }
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Clean styling for logo links */
+.table a {
+    text-decoration: none !important;
+}
+
+.table a:hover {
     text-decoration: none !important;
 }
