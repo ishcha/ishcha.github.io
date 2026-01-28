@@ -430,6 +430,11 @@ footer {
     .container {
         padding-top: 60px; /* Account for fixed nav bar */
     }
+    
+    /* Hide the main content heading since name is in mobile profile */
+    #about h1 {
+        display: none;
+    }
 }
 
 /* Smooth scrolling */
