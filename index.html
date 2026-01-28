@@ -20,7 +20,7 @@
         <link href='https://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
     </head>
     <body>
-        <!-- Table of Contents Sidebar -->
+        <!-- Table of Contents Sidebar (Desktop Only) -->
         <div class="toc-sidebar">
             <!-- Profile Section -->
             <div class="toc-profile">
@@ -43,6 +43,34 @@
                 <li class="toc-item"><a href="#publications" class="toc-link">Publications</a></li>
                 <li class="toc-item"><a href="#affiliations" class="toc-link">Work Experience</a></li>
             </ul>
+        </div>
+
+        <!-- Mobile Top Navigation Bar -->
+        <div class="mobile-nav-bar">
+            <div class="mobile-nav-links">
+                <a href="#about" class="mobile-nav-link">About</a>
+                <a href="#news" class="mobile-nav-link">News</a>
+                <a href="#publications" class="mobile-nav-link">Publications</a>
+                <a href="#affiliations" class="mobile-nav-link">Work</a>
+            </div>
+        </div>
+
+        <!-- Mobile Profile Header -->
+        <div class="mobile-profile">
+            <div class="mobile-profile-content">
+                <img class="mobile-profile-pic" src="img/profile_pic.jpeg" alt="Isha Chaudhary">
+                <div class="mobile-profile-info">
+                    <h1 class="mobile-profile-name">Isha Chaudhary</h1>
+                    <div class="mobile-profile-contact">
+                        <div class="mobile-email">
+                            <i class="fa fa-envelope"></i> isha4@illinois.edu
+                        </div>
+                        <div class="mobile-institution">
+                            <i class="fa fa-building"></i> Siebel School of Computing and Data Science, UIUC
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="container mt-4 mb-5">
@@ -118,45 +146,34 @@
                                 <strong>Nov 2022</strong> &mdash; Thanks to IIT Delhi for awarding me the Institute Silver Medal and Prof. C.S. Jha Memorial Excellence Award at Convocation 2022. Deeply honored to receive the prestigious awards.
                             </li>
                             <li class="mb-3">
-                                <strong>Aug 2022</strong> &mdash; I have joined as a Ph.D. student in Computer Science at the University of Illinois, Urbana-Champaign.
+                                <strong>Aug 2022</strong> &mdash; I joined as a Ph.D. student in Computer Science at the University of Illinois, Urbana-Champaign.
                             </li>
                         </ul>
                     </div>
-                    <button class="btn btn-link pl-0" type="button" data-toggle="collapse" data-target="#olderNews" aria-expanded="false" aria-controls="olderNews">
-                        <span class="show-more">Show more news <i class="fa fa-chevron-down"></i></span>
-                        <span class="show-less" style="display:none;">Show less news <i class="fa fa-chevron-up"></i></span>
+                    <button class="btn btn-link pl-0" type="button" onclick="toggleNews()" id="newsToggleBtn">
+                        Show more news <i class="fa fa-chevron-down"></i>
                     </button>
                     <script>
+                        function toggleNews() {
+                            const olderNews = document.getElementById('olderNews');
+                            const button = document.getElementById('newsToggleBtn');
+                            
+                            if (olderNews.style.display === 'none' || olderNews.style.display === '') {
+                                // Show the news
+                                olderNews.style.display = 'block';
+                                button.innerHTML = 'Show less news <i class="fa fa-chevron-up"></i>';
+                            } else {
+                                // Hide the news
+                                olderNews.style.display = 'none';
+                                button.innerHTML = 'Show more news <i class="fa fa-chevron-down"></i>';
+                            }
+                        }
+                        
+                        // Initialize the collapsed state
                         document.addEventListener('DOMContentLoaded', function() {
                             const olderNews = document.getElementById('olderNews');
-                            const showMore = document.querySelector('.show-more');
-                            const showLess = document.querySelector('.show-less');
-                            const button = document.querySelector('[data-target="#olderNews"]');
-                            
-                            if (olderNews && showMore && showLess && button) {
-                                // Handle Bootstrap collapse events
-                                olderNews.addEventListener('show.bs.collapse', function () {
-                                    showMore.style.display = 'none';
-                                    showLess.style.display = 'inline';
-                                });
-                                
-                                olderNews.addEventListener('hide.bs.collapse', function () {
-                                    showMore.style.display = 'inline';
-                                    showLess.style.display = 'none';
-                                });
-                                
-                                // Also handle button click directly as fallback
-                                button.addEventListener('click', function() {
-                                    setTimeout(function() {
-                                        if (olderNews.classList.contains('show')) {
-                                            showMore.style.display = 'none';
-                                            showLess.style.display = 'inline';
-                                        } else {
-                                            showMore.style.display = 'inline';
-                                            showLess.style.display = 'none';
-                                        }
-                                    }, 50);
-                                });
+                            if (olderNews) {
+                                olderNews.style.display = 'none';
                             }
                         });
                     </script>
@@ -448,9 +465,13 @@ control, showing that they align with intuition and reveal vulnerabilities in SO
                 function updateActiveSection() {
                     const scrollPos = window.pageYOffset + 200;
                     const sections = ['#about', '#news', '#publications', '#affiliations'];
+                    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
                     
                     // Remove active class from all links
                     tocLinks.forEach(function(link) {
+                        link.classList.remove('active');
+                    });
+                    mobileNavLinks.forEach(function(link) {
                         link.classList.remove('active');
                     });
                     
@@ -459,13 +480,36 @@ control, showing that they align with intuition and reveal vulnerabilities in SO
                         const section = document.querySelector(sections[i]);
                         if (section && section.offsetTop <= scrollPos) {
                             const activeLink = document.querySelector('.toc-link[href="' + sections[i] + '"]');
+                            const activeMobileLink = document.querySelector('.mobile-nav-link[href="' + sections[i] + '"]');
                             if (activeLink) {
                                 activeLink.classList.add('active');
+                            }
+                            if (activeMobileLink) {
+                                activeMobileLink.classList.add('active');
                             }
                             break;
                         }
                     }
                 }
+                
+                // Add smooth scrolling to mobile nav links
+                const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+                mobileNavLinks.forEach(function(link) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            const offsetTop = targetElement.offsetTop - 80; // Account for mobile nav bar
+                            window.scrollTo({
+                                top: offsetTop,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                });
                 
                 // Update on scroll
                 window.addEventListener('scroll', updateActiveSection);

@@ -319,6 +319,92 @@ footer {
     transform: translateX(3px);
 }
 
+/* Mobile Navigation Bar */
+.mobile-nav-bar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(248, 249, 250, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e0e0e0;
+    z-index: 1001;
+    padding: 10px 0;
+}
+
+.mobile-nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.mobile-nav-link {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+    background-color: #0066cc;
+    color: white;
+    text-decoration: none;
+}
+
+/* Mobile Profile Header */
+.mobile-profile {
+    display: none;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.mobile-profile-content {
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.mobile-profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-profile-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.mobile-profile-contact {
+    text-align: center;
+}
+
+.mobile-email,
+.mobile-institution {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.mobile-email i,
+.mobile-institution i {
+    color: #0066cc;
+    margin-right: 8px;
+    width: 16px;
+}
+
 /* Adjust content margin for sidebar */
 @media (min-width: 1300px) {
     .container {
@@ -326,10 +412,23 @@ footer {
     }
 }
 
-/* Hide TOC on small screens */
+/* Mobile Layout */
 @media (max-width: 1299px) {
     .toc-sidebar {
         display: none;
+    }
+    
+    .mobile-nav-bar {
+        display: block;
+    }
+    
+    .mobile-profile {
+        display: block;
+        margin-top: 60px; /* Account for fixed nav bar */
+    }
+    
+    .container {
+        padding-top: 60px; /* Account for fixed nav bar */
     }
 }
 
