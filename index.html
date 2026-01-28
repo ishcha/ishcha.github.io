@@ -131,15 +131,31 @@
                             const olderNews = document.getElementById('olderNews');
                             const showMore = document.querySelector('.show-more');
                             const showLess = document.querySelector('.show-less');
+                            const button = document.querySelector('[data-target="#olderNews"]');
                             
-                            if (olderNews && showMore && showLess) {
+                            if (olderNews && showMore && showLess && button) {
+                                // Handle Bootstrap collapse events
                                 olderNews.addEventListener('show.bs.collapse', function () {
                                     showMore.style.display = 'none';
                                     showLess.style.display = 'inline';
                                 });
+                                
                                 olderNews.addEventListener('hide.bs.collapse', function () {
                                     showMore.style.display = 'inline';
                                     showLess.style.display = 'none';
+                                });
+                                
+                                // Also handle button click directly as fallback
+                                button.addEventListener('click', function() {
+                                    setTimeout(function() {
+                                        if (olderNews.classList.contains('show')) {
+                                            showMore.style.display = 'none';
+                                            showLess.style.display = 'inline';
+                                        } else {
+                                            showMore.style.display = 'inline';
+                                            showLess.style.display = 'none';
+                                        }
+                                    }, 50);
                                 });
                             }
                         });
